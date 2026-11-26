@@ -1,21 +1,23 @@
 [
   {
     "adapter_name": "online-mind2web",
-    "agent": "<agent>@<version>",
-    "model": "<model>",
+    "agent": "browser-use@0.13.14",
+    "model": "gpt-6-luna",
     "date": "YYYY-MM-DD",
-    "adapted_benchmark_size": null,
-    "parity_benchmark_size": null,
-    "number_of_runs": null,
-    "notes": null,
-    "original_parity_repo": null,
-    "adapter_pr": [],
+    "adapted_benchmark_size": 300,
+    "parity_benchmark_size": 100,
+    "number_of_runs": 3,
+    "notes": "Parity runs pending confirmation of the plan with the Harbor team. Parity split = 100-task difficulty-stratified subset (seed 42; easy 27 / medium 47 / hard 26). Both sides run the same Browser Use runner; scored by upstream WebJudge (Online-Mind2Web mode, gpt-6-luna, threshold 3).",
+    "original_parity_repo": "https://github.com/adityalahiri/Online-Mind2Web/tree/harbor-parity",
+    "adapter_pr": [
+      "https://github.com/harbor-index/adapters/pull/47"
+    ],
     "dataset_pr": [],
     "parity_pr": [],
     "metrics": [
       {
         "benchmark_name": "Online-Mind2Web",
-        "metric": "<metric_name>",
+        "metric": "Success rate (%)",
         "original": "<mean +/- sample_SEM, e.g. 45.2% +/- 1.3%>",
         "harbor": "<mean +/- sample_SEM, e.g. 44.8% +/- 1.1%>",
         "original_runs": [],

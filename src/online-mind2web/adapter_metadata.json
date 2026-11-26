@@ -1,29 +1,35 @@
 [
   {
     "adapter_name": "online-mind2web",
-    "adapter_builders": [],
+    "adapter_builders": [
+      "Aditya Lahiri (adityalahiri13@gmail.com)"
+    ],
     "original_benchmark": [
       {
-        "split": "test",
-        "size": null,
-        "harness": null,
-        "supported_agents": null,
+        "split": "full",
+        "size": 300,
+        "harness": "None",
+        "supported_agents": [
+          "None"
+        ],
         "adaptable": true,
-        "notes": null
+        "notes": "Live-website tasks; upstream provides tasks and the WebJudge evaluator but no agent harness."
       }
     ],
     "harbor_adapter": [
       {
-        "split": "test",
-        "adapted_benchmark_size": null,
-        "parity_benchmark_size": null,
-        "parity_sampling_rate": null,
-        "registry_benchmark_size": null,
-        "added_agents": [],
+        "split": "full",
+        "adapted_benchmark_size": 300,
+        "parity_benchmark_size": 100,
+        "parity_sampling_rate": 0.3333,
+        "registry_benchmark_size": 300,
+        "added_agents": [
+          "browser-use@0.13.14"
+        ],
         "parity_matching_agents": [],
         "parity_unmatching_agents": null,
         "parity_costs": null,
-        "notes": null
+        "notes": "No oracle (no reference solutions; live websites). Verifier = upstream WebJudge in the task container."
       }
     ]
   }

@@ -13,13 +13,15 @@
       "https://github.com/harbor-index/adapters/pull/47"
     ],
     "dataset_pr": [],
-    "parity_pr": [],
+    "parity_pr": [
+      "https://huggingface.co/datasets/harborframework/parity-experiments/discussions/315"
+    ],
     "metrics": [
       {
         "benchmark_name": "Online-Mind2Web",
         "metric": "Success rate (%)",
-        "original": "33.00 ± 1.53",
-        "harbor": "32.33 ± 0.67",
+        "original": "33.00 \u00b1 1.53",
+        "harbor": "32.33 \u00b1 0.67",
         "original_runs": [
           30.0,
           35.0,

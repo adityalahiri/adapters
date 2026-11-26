@@ -164,6 +164,8 @@ Flags:
 
 Parity ran on the 100-task parity split, with 3 runs per side. Full details are in `parity_experiment.json`.
 
+Links: [original benchmark](https://github.com/OSU-NLP-Group/Online-Mind2Web) · [parity fork](https://github.com/adityalahiri/Online-Mind2Web/tree/harbor-parity) · [adapter PR](https://github.com/harbor-index/adapters/pull/47) · [parity artifacts (HF)](https://huggingface.co/datasets/harborframework/parity-experiments/discussions/315) · dataset PR: to follow after review
+
 | Agent | Model | Metric | Number of Runs | Dataset Size | Original Benchmark Performance | Harbor Adapter Performance |
 |-------|-------|--------|------------------|--------------|------------------------------|----------------------------|
 | browser-use@0.13.14 | gpt-6-luna | Success rate (%) (WebJudge, gpt-6-luna) | 3 | 100 (parity split of 300) | 33.00 ± 1.53 | 32.33 ± 0.67 |

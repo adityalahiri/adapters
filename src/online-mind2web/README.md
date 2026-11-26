@@ -13,7 +13,7 @@ Online-Mind2Web tests whether a web agent can complete realistic, everyday tasks
 
 **Main changes for Harbor:**
 - **A browsing agent is included.** Upstream ships tasks and an evaluator but no agent. This adapter includes a [Browser Use](https://github.com/browser-use/browser-use) agent, `online_mind2web.browser_use_agent:BrowserUseAgent`. The agent runs headless Chromium inside the task container and writes the upstream v2 submission format.
-- **WebJudge runs as the verifier.** WebJudge is the upstream evaluator, used here in Online-Mind2Web mode. It runs in the same container after the agent finishes.
+- **WebJudge runs as the verifier.** WebJudge is the upstream evaluator, used here in Online-Mind2Web mode. It runs in a **separate verifier container** (`[verifier] environment_mode = "separate"`), built fresh from the same image, so the agent can't tamper with the grader. Harbor collects the agent's submission (`artifacts = ["/app/output"]`) and re-creates it at `/app/output` in the verifier container.
 - **No oracle.** The benchmark has no reference solutions, so `solution/solve.sh` is a placeholder. See [Notes & Caveats](#notes--caveats).
 
 ## What is Online-Mind2Web?
@@ -85,7 +85,7 @@ src/online-mind2web/
 ```
 
 During a run:
-- The agent writes its submission to `/app/output/<task_id>/`, which is copied to `/logs/agent/trajectory/`.
+- The agent writes its submission to `/app/output/<task_id>/`. It is also copied to `/logs/agent/trajectory/`, and Harbor saves it as a trial artifact under `artifacts/app/output/`, which is what the separate verifier grades. Saved submissions can therefore be regraded without rerunning the agent.
 - The verifier saves the trajectory it judged to `/logs/verifier/trajectory/` and WebJudge's full output to `/logs/verifier/webjudge_result.json`.
 
 ## Run Evaluation / Harness

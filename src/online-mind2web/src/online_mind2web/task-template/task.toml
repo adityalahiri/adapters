@@ -1,5 +1,9 @@
 schema_version = "1.0"
 
+# The agent's v2 submission is collected from the agent container and re-created at the
+# same path in the separate verifier container (Harbor re-materializes artifacts at their source path).
+artifacts = ["/app/output"]
+
 [task]
 name = "osunlp/online-mind2web__{task_slug}"
 description = "Online-Mind2Web task {task_id} on {website}"
@@ -23,6 +27,8 @@ website = "{website}"
 reference_length = {reference_length}
 
 [verifier]
+# Grade in a fresh container built from the same environment, not in the agent's workspace.
+environment_mode = "separate"
 timeout_sec = 900.0
 
 [verifier.env]

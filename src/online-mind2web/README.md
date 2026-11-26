@@ -216,7 +216,7 @@ PYTHONPATH=src/online-mind2web/src uv run --project src/online-mind2web --extra 
 - **Judge variance.** WebJudge uses an LLM, and GPT-6-family models don't accept `temperature=0`, so the same trajectory can occasionally get a different verdict. The judge uses the model's default reasoning effort (medium), as upstream recommends.
 - **The judge never sees the agent's final answer.** It sees only the actions and screenshots. This is upstream's behaviour. Information the agent read but never showed on screen cannot earn credit.
 - **Internet access.** The container needs outbound internet access for the websites and the OpenAI API.
-- **Resources.** Each task uses 2 CPUs and 4 GB of memory, with a 40-minute agent timeout and a 15-minute verifier timeout. The first image build downloads Chromium and fonts, about 1 GB.
+- **Resources.** Each task uses 2 CPUs and 8 GB of memory (a few pages, e.g. large sitemaps, exhausted 4 GB), with a 40-minute agent timeout and a 15-minute verifier timeout. The first image build downloads Chromium and fonts, about 1 GB.
 - **Cost.** With gpt-6-luna at `reasoning_effort=low`, the agent cost about $0.005–0.04 per task in our sanity runs, plus the judge's calls.
 
 ## Installation / Prerequisites

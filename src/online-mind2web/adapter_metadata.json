@@ -26,9 +26,13 @@
         "added_agents": [
           "browser-use@0.13.14"
         ],
-        "parity_matching_agents": [],
-        "parity_unmatching_agents": null,
-        "parity_costs": null,
+        "parity_matching_agents": [
+          "browser-use@0.13.14+gpt-6-luna"
+        ],
+        "parity_unmatching_agents": [
+          "None"
+        ],
+        "parity_costs": "$15",
         "notes": "No oracle (no reference solutions; live websites). Verifier = upstream WebJudge in the task container."
       }
     ]

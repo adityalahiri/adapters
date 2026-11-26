@@ -162,13 +162,18 @@ Flags:
 
 ## Comparison with Original Benchmark (Parity)
 
-> **Status: parity runs pending.** The plan below is awaiting confirmation from the Harbor team. Numbers will be filled in from `parity_experiment.json`.
+Parity ran on the 100-task parity split, with 3 runs per side. Full details are in `parity_experiment.json`.
 
 | Agent | Model | Metric | Number of Runs | Dataset Size | Original Benchmark Performance | Harbor Adapter Performance |
 |-------|-------|--------|------------------|--------------|------------------------------|----------------------------|
-| browser-use@0.13.14 | gpt-6-luna | Success rate (WebJudge, gpt-6-luna) | 3 (planned) | 100 (parity split of 300) | TBD | TBD |
+| browser-use@0.13.14 | gpt-6-luna | Success rate (%) (WebJudge, gpt-6-luna) | 3 | 100 (parity split of 300) | 33.00 ± 1.53 | 32.33 ± 0.67 |
 
-**Sanity check so far:** 5 tasks from the parity split. Harbor scored 1/5 and the original side scored 1/5, with the same score on every task. A second Harbor run gave the same per-task results.
+- **Per-run scores:** original 30.0, 35.0 and 34.0; Harbor 31.0, 33.0 and 33.0.
+- **The score ranges overlap.** Both sides finished all 100 tasks in every run, with 0 errors and no missing trajectories.
+- **Individual tasks still vary between runs.** The websites are live, so a single task can flip from success to failure from one run to the next on either side. For example, the two sides agreed on 77 of 100 tasks in run 1. This is why parity compares the mean over 3 runs.
+- **Cost:** about $15 in total. Agent tokens were about $7 on the Harbor side (including one earlier trial full run) and $6 on the original side, plus about $1.50 of WebJudge calls.
+- **An earlier trial full run on Harbor** used 4 GB per task and scored 32%. One task was killed when it ran out of memory, so the final runs use 8 GB.
+- **Grader setup during parity:** the Harbor parity runs graded in the agent's container. The adapter has since switched to a separate verifier. The grading code is identical, and on a saved known-good and known-wrong submission the separate verifier gives 1 and 0, on both Harbor 0.24.0 and 0.27.0.
 
 **Setup.** Upstream has no agent of its own, so both sides run the same Browser Use runner (`run_browser_use.py`) with the same prompt, model and settings. What differs between the sides:
 - **Harbor side:** Chromium in the task container; WebJudge runs as the Harbor verifier.

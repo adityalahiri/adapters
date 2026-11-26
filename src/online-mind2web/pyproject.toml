@@ -10,7 +10,7 @@ dependencies = [
 
 [project.optional-dependencies]
 # Needed only to run the custom Browser Use agent (online_mind2web.browser_use_agent).
-harbor = ["harbor==0.24.0"]
+harbor = ["harbor[daytona]==0.24.0", "daytona>=0.210.0,<2"]
 
 [project.scripts]
 online-mind2web = "online_mind2web.main:main"
